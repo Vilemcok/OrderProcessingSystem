@@ -91,6 +91,9 @@ AUX
 COM[1-9]
 LPT[1-9]
 
+# Claude Code local settings
+.claude/settings.local.json
+
 # Python
 *.pyc
 __pycache__/
