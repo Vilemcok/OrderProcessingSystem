@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OrderProcessingSystem.Models.Entities;
 
@@ -26,7 +25,7 @@ public class AppDbContext : DbContext
             entity.HasIndex(e => e.Email).IsUnique();
             entity.Property(e => e.Name).IsRequired().HasMaxLength(100);
             entity.Property(e => e.Email).IsRequired().HasMaxLength(100);
-            entity.Property(e => e.PasswordHash).IsRequired();
+            entity.Property(e => e.Password).IsRequired();
         });
 
         // Product configuration
@@ -76,10 +75,6 @@ public class AppDbContext : DbContext
 
     private void SeedData(ModelBuilder modelBuilder)
     {
-        // Static password hashes for "Password123!" - these are pre-computed and won't change
-        var passwordHash1 = "AQAAAAIAAYagAAAAEKpq8xhqCZ5RnJ3qKjYqVZx+9mJ2qN5K3xH9L8P2vT6wQ4sE7dF0gA1bC2jK3nM4iQ==";
-        var passwordHash2 = "AQAAAAIAAYagAAAAEKpq8xhqCZ5RnJ3qKjYqVZx+9mJ2qN5K3xH9L8P2vT6wQ4sE7dF0gA1bC2jK3nM4iQ==";
-
         // Seed users (static GUIDs)
         var user1Id = Guid.Parse("11111111-1111-1111-1111-111111111111");
         var user2Id = Guid.Parse("22222222-2222-2222-2222-222222222222");
@@ -90,14 +85,14 @@ public class AppDbContext : DbContext
                 Id = user1Id,
                 Name = "John Doe",
                 Email = "john@example.com",
-                PasswordHash = passwordHash1
+                Password = "Password123!"
             },
             new User
             {
                 Id = user2Id,
                 Name = "Jane Smith",
                 Email = "jane@example.com",
-                PasswordHash = passwordHash2
+                Password = "Password456!"
             }
         );
 

@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Identity;
 using OrderProcessingSystem.Models.DTOs.Requests;
 using OrderProcessingSystem.Models.DTOs.Responses;
 using OrderProcessingSystem.Models.Entities;
@@ -11,13 +10,11 @@ public class AuthService : IAuthService
 {
     private readonly IUserRepository _userRepository;
     private readonly ITokenService _tokenService;
-    private readonly PasswordHasher<User> _passwordHasher;
 
     public AuthService(IUserRepository userRepository, ITokenService tokenService)
     {
         _userRepository = userRepository;
         _tokenService = tokenService;
-        _passwordHasher = new PasswordHasher<User>();
     }
 
     public async Task<LoginResponse?> LoginAsync(LoginRequest request)
@@ -25,13 +22,7 @@ public class AuthService : IAuthService
         var user = await _userRepository.GetByEmailAsync(request.Email);
         if (user == null) return null;
 
-        var verificationResult = _passwordHasher.VerifyHashedPassword(
-            user,
-            user.PasswordHash,
-            request.Password
-        );
-
-        if (verificationResult == PasswordVerificationResult.Failed)
+        if (user.Password != request.Password)
             return null;
 
         var token = _tokenService.GenerateToken(user);

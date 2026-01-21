@@ -201,6 +201,35 @@ Swagger + statické seed data + package versions
 Executívny agent dobre zvládol 40+ taskov, ale .NET 10 kompatibilita vyžadovala zásahy
 ```
 
+
+
+### Prompt #7: Migrácia na plain text password authentication (~15 min, 19% usage)
+
+**Nástroj:** Claude Code
+**Kontext:** Database migration a autentifikácia
+
+**Prompt:**
+```
+Add migration to remove PasswordHash column in User table and add new column Password. Seed it with real passwords of our two users. Than change logic to make authorization work. Mainly LoginAsync method in AuthService service.
+```
+
+**Výsledok:**
+[x] ✅ Fungoval perfektne (first try)
+[ ] ⭐⭐⭐⭐ Dobré, potreboval malé úpravy
+[ ] ⭐⭐⭐ OK, potreboval viac úprav
+[ ] ⭐⭐ Slabé, musel som veľa prepísať
+[ ] ❌ Nefungoval, musel som celé prepísať
+
+**Úpravy:**
+```
+Nič, fungoval perfektne
+```
+
+**Poznámky:**
+```
+AI dobre zvládol kompletný workflow: zmena entity, migrácia DB, update služieb, testovanie. Všetko autonómne.
+```
+
 ---
 
 ## 3. Problémy a Riešenia 

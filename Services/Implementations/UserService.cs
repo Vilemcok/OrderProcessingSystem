@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Identity;
 using OrderProcessingSystem.Models.DTOs.Requests;
 using OrderProcessingSystem.Models.DTOs.Responses;
 using OrderProcessingSystem.Models.Entities;
@@ -10,12 +9,10 @@ namespace OrderProcessingSystem.Services.Implementations;
 public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
-    private readonly PasswordHasher<User> _passwordHasher;
 
     public UserService(IUserRepository userRepository)
     {
         _userRepository = userRepository;
-        _passwordHasher = new PasswordHasher<User>();
     }
 
     public async Task<UserResponse?> GetByIdAsync(Guid id)
@@ -49,7 +46,7 @@ public class UserService : IUserService
             Id = Guid.NewGuid(),
             Name = request.Name,
             Email = request.Email,
-            PasswordHash = _passwordHasher.HashPassword(null!, request.Password)
+            Password = request.Password
         };
 
         await _userRepository.AddAsync(user);
@@ -72,7 +69,7 @@ public class UserService : IUserService
 
         if (!string.IsNullOrEmpty(request.Password))
         {
-            user.PasswordHash = _passwordHasher.HashPassword(user, request.Password);
+            user.Password = request.Password;
         }
 
         await _userRepository.UpdateAsync(user);
