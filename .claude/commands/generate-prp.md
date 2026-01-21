@@ -26,8 +26,6 @@ The AI agent only gets the context you are appending to the PRP and training dat
 
 ## PRP Generation
 
-Using PRPs/templates/prp_base.md as template:
-
 ### Critical Context to Include and pass to the AI agent as part of the PRP
 - **Documentation**: URLs with specific sections
 - **Code Examples**: Real snippets from codebase
@@ -40,13 +38,13 @@ Using PRPs/templates/prp_base.md as template:
 - Include error handling strategy
 - list tasks to be completed to fullfill the PRP in the order they should be completed
 
-### Validation Gates (Must be Executable) eg for python
+### Validation Gates
 ```bash
-# Syntax/Style
-ruff check --fix && mypy .
+# Compile
+dotnet build
 
 # Unit Tests
-uv run pytest tests/ -v
+dotnet test
 
 ```
 

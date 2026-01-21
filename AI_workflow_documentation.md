@@ -114,6 +114,93 @@ Nič, fungoval perfektne
 AI dobre rozumie štruktúre existujúcich commandov
 ```
 
+
+
+### Prompt #4: Git setup a prvý commit (~8-12 min 55%)
+
+**Nástroj:** Claude Code
+**Kontext:** Git a verziovanie
+
+**Prompt:**
+```
+add projet to remote https://github.com/Vilemcok/OrderProcessingSystem.git. Do first commint. Think about gitignore.
+```
+
+**Výsledok:**
+[x] ✅ Fungoval perfektne (first try)
+[ ] ⭐⭐⭐⭐ Dobré, potreboval malé úpravy
+[ ] ⭐⭐⭐ OK, potreboval viac úprav
+[ ] ⭐⭐ Slabé, musel som veľa prepísať
+[ ] ❌ Nefungoval, musel som celé prepísať
+
+**Úpravy:**
+```
+Nič, fungoval perfektne
+```
+
+**Poznámky:**
+```
+AI automaticky vytvorila kompletný .gitignore pre .NET
+```
+
+
+
+### Prompt #5: Generovanie kompletného PRP pre OrderProcessingSystem (~25-30 min, 23% usage)
+
+**Nástroj:** Claude Code
+**Kontext:** PRP generovanie a research
+
+**Prompt:**
+```
+/generate-prp INITIAL.md
+```
+
+**Výsledok:**
+[x] ✅ Fungoval perfektne (first try)
+[ ] ⭐⭐⭐⭐ Dobré, potreboval malé úpravy
+[ ] ⭐⭐⭐ OK, potreboval viac úprav
+[ ] ⭐⭐ Slabé, musel som veľa prepísať
+[ ] ❌ Nefungoval, musel som celé prepísať
+
+**Úpravy:**
+```
+Nič, fungoval perfektne
+```
+
+**Poznámky:**
+```
+Context engineering metóda ukázala svoju skutočnú silu pri generovaní komplexného PRP dokumentu. AI automaticky vykonala 5 web searchov pre aktuálne best practices (.NET 10, JWT auth, Testcontainers, EF Core s PostgreSQL) a integrovala výsledky priamo do PRP. Vygenerovaný dokument obsahuje nie len implementačné kroky, ale aj konkrétne príklady kódu, linky na oficiálnu dokumentáciu, validation gates a 40+ checkpoint taskov. Najdôležitejšie je, že PRP dostal skóre 9/10 na "one-pass implementation success", čo znamená, že iný AI agent by mal byť schopný implementovať celý systém bez ďalších otázok. Toto je presne to, čo context engineering sľubuje - samovalidujúce sa PRP s dostatočným kontextom pre autonómnu implementáciu.
+```
+
+
+
+### Prompt #6: Implementácia kompletného Order Processing System cez /execute-prp (~95 min, 56% usage)
+
+**Nástroj:** Claude Code
+**Kontext:** Autonómna implementácia z PRP dokumentu
+
+**Prompt:**
+```
+/execute-prp order-processing-system-implementation.md
+```
+
+**Výsledok:**
+[ ] ✅ Fungoval perfektne (first try)
+[x] ⭐⭐⭐⭐ Dobré, potreboval malé úpravy
+[ ] ⭐⭐⭐ OK, potreboval viac úprav
+[ ] ⭐⭐ Slabé, musel som veľa prepísať
+[ ] ❌ Nefungoval, musel som celé prepísať
+
+**Úpravy:**
+```
+Swagger + statické seed data + package versions
+```
+
+**Poznámky:**
+```
+Executívny agent dobre zvládol 40+ taskov, ale .NET 10 kompatibilita vyžadovala zásahy
+```
+
 ---
 
 ## 3. Problémy a Riešenia 
