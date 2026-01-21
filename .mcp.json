@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "eshop": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "mcp/postgres",
+        "postgresql://orderuser:orderpass123@host.docker.internal:5432/OrderProcessingDB"
+      ]
+    }
+  }
+}
