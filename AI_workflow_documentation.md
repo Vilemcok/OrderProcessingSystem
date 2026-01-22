@@ -230,6 +230,35 @@ Nič, fungoval perfektne
 AI dobre zvládol kompletný workflow: zmena entity, migrácia DB, update služieb, testovanie. Všetko autonómne.
 ```
 
+
+
+### Prompt #8: Generovanie PRP pre Part 2 (Event-Driven Architecture) (~25-30 min, 33% usage)
+
+**Nástroj:** Claude Code
+**Kontext:** PRP generovanie a research (Event-Driven Architecture)
+
+**Prompt:**
+```
+/generate-prp INITIAL.md
+```
+
+**Výsledok:**
+[x] ✅ Fungoval perfektne (first try)
+[ ] ⭐⭐⭐⭐ Dobré, potreboval malé úpravy
+[ ] ⭐⭐⭐ OK, potreboval viac úprav
+[ ] ⭐⭐ Slabé, musel som veľa prepísať
+[ ] ❌ Nefungoval, musel som celé prepísať
+
+**Úpravy:**
+```
+Nič, fungoval perfektne
+```
+
+**Poznámky:**
+```
+Context engineering metóda vynikajúco funguje - AI autonómne vykonala research, analyzú codebase a vytvorila PRP s confidence 9/10
+```
+
 ---
 
 ## 3. Problémy a Riešenia 

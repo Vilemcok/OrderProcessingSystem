@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>c7f3c94a-5779-444d-95ef-6dbcce13b6ea</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>.</DockerfileContext>
+    <DockerfileContext>..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,7 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include=".claude\commands\add-prompt.md" />
+    <None Include="..\.claude\commands\add-problem.md" />
+    <None Include="..\.claude\commands\add-prompt.md" />
+    <None Include="..\.claude\commands\execute-prp.md" />
+    <None Include="..\.claude\commands\generate-prp.md" />
   </ItemGroup>
 
 </Project>

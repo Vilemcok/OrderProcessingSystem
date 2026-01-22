@@ -1,4 +1,10 @@
 <Solution>
-  <Project Path="OrderProcessingSystem.csproj" />
+  <Folder Name="/Solution Items/">
+    <File Path="INITIAL.md" />
+    <File Path="INITIAL_1Part.md" />
+    <File Path="PRPs/event-driven-architecture-rabbitmq-nservicebus.md" />
+    <File Path="PRPs/order-processing-system-implementation.md" />
+  </Folder>
   <Project Path="OrderProcessingSystem.Tests/OrderProcessingSystem.Tests.csproj" />
+  <Project Path="OrderProcessingSystem.WebApi/OrderProcessingSystem.WebApi.csproj" />
 </Solution>
