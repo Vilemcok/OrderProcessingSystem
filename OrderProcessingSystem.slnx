@@ -5,6 +5,8 @@
     <File Path="PRPs/event-driven-architecture-rabbitmq-nservicebus_before_project_moves.md" />
     <File Path="PRPs/order-processing-system-implementation.md" />
   </Folder>
+  <Project Path="OrderProcessingSystem.Messaging.Tests/OrderProcessingSystem.Messaging.Tests.csproj" />
+  <Project Path="OrderProcessingSystem.Messaging/OrderProcessingSystem.Messaging.csproj" />
   <Project Path="OrderProcessingSystem.Tests/OrderProcessingSystem.Tests.csproj" />
   <Project Path="OrderProcessingSystem.WebApi/OrderProcessingSystem.WebApi.csproj" />
 </Solution>

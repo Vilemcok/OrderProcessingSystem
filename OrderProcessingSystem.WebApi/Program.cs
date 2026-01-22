@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using NServiceBus;
 using OrderProcessingSystem.Data;
 using OrderProcessingSystem.Middleware;
 using OrderProcessingSystem.Repositories.Implementations;
@@ -55,6 +56,30 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddControllers();
+
+// Add NServiceBus for event publishing
+builder.Host.UseNServiceBus(context =>
+{
+    var endpointConfiguration = new EndpointConfiguration("OrderProcessingSystem.WebApi");
+
+    // Configure RabbitMQ transport
+    var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+    var rabbitMqConnectionString = builder.Configuration.GetConnectionString("RabbitMQ")
+        ?? "host=localhost;username=guest;password=guest";
+    transport.ConnectionString(rabbitMqConnectionString);
+    transport.UseConventionalRoutingTopology(QueueType.Quorum);
+
+    // Use Learning persistence for send-only endpoint
+    endpointConfiguration.UsePersistence<LearningPersistence>();
+
+    // Enable installers
+    endpointConfiguration.EnableInstallers();
+
+    // Configure as send-only endpoint (publishes events but doesn't process them)
+    endpointConfiguration.SendOnly();
+
+    return endpointConfiguration;
+});
 
 // Configure Swagger with JWT support (Development only)
 if (builder.Environment.IsDevelopment())

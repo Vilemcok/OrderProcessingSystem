@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using NServiceBus;
 using OrderProcessingSystem.Data;
+using OrderProcessingSystem.Messaging.Events;
 using OrderProcessingSystem.Models.DTOs.Requests;
 using OrderProcessingSystem.Models.DTOs.Responses;
 using OrderProcessingSystem.Models.Entities;
@@ -13,15 +15,21 @@ public class OrderService : IOrderService
     private readonly AppDbContext _context;
     private readonly IOrderRepository _orderRepository;
     private readonly IProductRepository _productRepository;
+    private readonly IMessageSession _messageSession;
+    private readonly ILogger<OrderService> _logger;
 
     public OrderService(
         AppDbContext context,
         IOrderRepository orderRepository,
-        IProductRepository productRepository)
+        IProductRepository productRepository,
+        IMessageSession messageSession,
+        ILogger<OrderService> logger)
     {
         _context = context;
         _orderRepository = orderRepository;
         _productRepository = productRepository;
+        _messageSession = messageSession;
+        _logger = logger;
     }
 
     public async Task<OrderResponse?> GetByIdAsync(Guid id)
@@ -111,7 +119,14 @@ public class OrderService : IOrderService
             // Commit transaction
             await transaction.CommitAsync();
 
-            // 6. Return response
+            // 6. Publish OrderCreated event AFTER successful commit
+            await _messageSession.Publish(new OrderCreated { OrderId = order.Id });
+
+            _logger.LogInformation(
+                "Order {OrderId} created and OrderCreated event published",
+                order.Id);
+
+            // 7. Return response immediately (NO waiting for event processing)
             return new OrderResponse
             {
                 Id = order.Id,
