@@ -2,7 +2,7 @@
   <Folder Name="/Solution Items/">
     <File Path="INITIAL.md" />
     <File Path="INITIAL_1Part.md" />
-    <File Path="PRPs/event-driven-architecture-rabbitmq-nservicebus.md" />
+    <File Path="PRPs/event-driven-architecture-rabbitmq-nservicebus_before_project_moves.md" />
     <File Path="PRPs/order-processing-system-implementation.md" />
   </Folder>
   <Project Path="OrderProcessingSystem.Tests/OrderProcessingSystem.Tests.csproj" />
