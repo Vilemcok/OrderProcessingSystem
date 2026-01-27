@@ -78,6 +78,9 @@ builder.Host.UseNServiceBus(context =>
     // Configure as send-only endpoint (publishes events but doesn't process them)
     endpointConfiguration.SendOnly();
 
+    // **Specify a serializer**
+    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
     return endpointConfiguration;
 });
 
